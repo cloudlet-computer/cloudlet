@@ -1,0 +1,23 @@
+{
+  "name": "cloudlet",
+  "version": "0.1.0",
+  "author": "Andy Mockler <asmockler@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "setup": "prisma migrate up --experimental",
+    "start": "ts-node-dev --respawn --transpileOnly --clear server/index.ts"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.4",
+    "@types/node": "^13.13.4",
+    "chalk": "^4.0.0",
+    "prettier": "^2.0.5",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.0.0-beta.4",
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0"
+  }
+}
