@@ -5,19 +5,28 @@
   "license": "MIT",
   "scripts": {
     "setup": "prisma migrate up --experimental",
-    "start": "ts-node-dev --respawn --transpileOnly --clear server/index.ts"
+    "start": "ts-node-dev --respawn --transpileOnly --clear server/index.ts",
+    "start:client": "parcel watch client/apps/*/index.html"
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.4",
+    "@types/compression": "^1.7.0",
     "@types/node": "^13.13.4",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
     "chalk": "^4.0.0",
+    "parcel": "^2.0.0-alpha.3.2",
     "prettier": "^2.0.5",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-beta.4",
-    "apollo-server": "^2.12.0",
-    "graphql": "^15.0.0"
+    "apollo-server-express": "^2.12.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "graphql": "^15.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

@@ -1,4 +1,7 @@
-import {ApolloServer, gql} from 'apollo-server';
+import express from 'express';
+import compression from 'compression';
+import path from 'path';
+import {ApolloServer, gql} from 'apollo-server-express';
 import {db} from './db';
 import {logPlugin, logger} from './apollo';
 
@@ -38,6 +41,18 @@ const server = new ApolloServer({
   plugins: [logPlugin],
 });
 
-server.listen().then(({url}) => {
-  console.log(`🚀  Server ready at ${url}`);
+const app = express();
+server.applyMiddleware({app});
+
+const clientDistPath = path.join(__dirname, '..', 'dist');
+
+app.use(compression());
+app.use(express.static(clientDistPath));
+
+app.get('/notes/*', (_, res) => {
+  res.sendFile(path.join(clientDistPath, 'Notes', 'index.html'));
 });
+
+app.listen({port: 4000}, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
+);
