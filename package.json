@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "setup": "prisma migrate up --experimental",
-    "start": "ts-node-dev --respawn --transpileOnly --clear server/index.ts",
+    "start:server": "ts-node-dev --respawn --transpileOnly server/index.ts",
     "start:client": "parcel watch client/apps/*/index.html"
   },
   "devDependencies": {

@@ -16,4 +16,5 @@ A personal cloud
 ## Getting Started
 
 - Install dependencies with `yarn`
-- Run `yarn setup` to get things going
+- Run `yarn setup` to set up your environment
+- Run the server with `yarn start:server` and the ui with `yarn start:client`. The app will be available at `localhost:4000`.
