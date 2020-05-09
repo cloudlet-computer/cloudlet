@@ -1,1 +1,0 @@
-Parcel builds a different directory structure based on how many entries are passed. At the time of this writing, there is only 1 entry (`Notes`), but I want to write the server under the assumption that there are many, so this `Temp` app will live here until another real entry (e.g. auth or another app) is added.
