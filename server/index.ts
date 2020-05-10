@@ -78,6 +78,10 @@ app.get('/notes/*', (_, res) => {
   res.sendFile(path.join(clientDistPath, 'Notes', 'index.html'));
 });
 
+app.get('/settings/*', (_, res) => {
+  res.sendFile(path.join(clientDistPath, 'Settings', 'index.html'));
+});
+
 app.listen({port: 4000}, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
 );
