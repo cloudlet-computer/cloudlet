@@ -6,7 +6,18 @@
   "scripts": {
     "setup": "prisma migrate up --experimental",
     "start:server": "ts-node-dev --respawn --transpileOnly server/index.ts",
-    "start:client": "parcel watch client/apps/*/index.html"
+    "start:client": "parcel watch client/index.html"
+  },
+  "browser": "dist/index.html",
+  "targets": {
+    "browser": {
+      "engines": {
+        "browsers": [
+          "> 1%",
+          "not dead"
+        ]
+      }
+    }
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.0-beta.4",

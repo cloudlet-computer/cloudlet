@@ -70,16 +70,8 @@ const clientDistPath = path.join(__dirname, '..', 'dist');
 app.use(compression());
 app.use(express.static(clientDistPath));
 
-app.get('/', (_, res) => {
-  res.sendFile(path.join(clientDistPath, 'Home', 'index.html'));
-});
-
-app.get('/notes/*', (_, res) => {
-  res.sendFile(path.join(clientDistPath, 'Notes', 'index.html'));
-});
-
-app.get('/settings/*', (_, res) => {
-  res.sendFile(path.join(clientDistPath, 'Settings', 'index.html'));
+app.get('/*', (_, res) => {
+  res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 
 app.listen({port: 4000}, () =>
