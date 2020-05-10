@@ -2,7 +2,7 @@ import './global.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {ThemeProvider} from 'theme-ui';
+import {ThemeProvider, Box} from 'theme-ui';
 import {
   ApolloClient,
   ApolloProvider,
@@ -11,6 +11,7 @@ import {
 } from '@apollo/client';
 
 import {THEME} from './theme';
+import {Navbar} from './components';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -25,13 +26,16 @@ const Settings = React.lazy(() => import('./apps/Settings'));
 
 function App() {
   return (
-    <React.Suspense fallback={<p>Loading...</p>}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/notes" element={<Notes />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </React.Suspense>
+    <Box>
+      <Navbar />
+      <React.Suspense fallback={<p>Loading...</p>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </React.Suspense>
+    </Box>
   );
 }
 

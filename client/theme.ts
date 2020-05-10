@@ -2,10 +2,13 @@ import {Theme} from 'theme-ui';
 
 export const THEME: Theme = {
   colors: {
+    gray: '#b0b099',
+
     text: '#000',
     background: '#fff',
     primary: '#3686ff',
     muted: '#efefef',
+
     modes: {
       dark: {
         text: '#eee',
