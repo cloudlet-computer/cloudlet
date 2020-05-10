@@ -1,6 +1,7 @@
 import express from 'express';
 import compression from 'compression';
 import path from 'path';
+import bcrypt from 'bcrypt';
 import {ApolloServer, gql} from 'apollo-server-express';
 import {db} from './db';
 import {logPlugin, logger} from './apollo';
@@ -8,19 +9,24 @@ import {logPlugin, logger} from './apollo';
 const typeDefs = gql`
   type User {
     id: ID
-    email: String
+    username: String
     name: String
-    todos: [Todo]
+    password: String
+    notes: [Note]
   }
 
-  type Todo {
+  type Note {
     id: ID
     title: String
-    completed: Boolean
+    createdAt: String
   }
 
   type Query {
     user(id: ID): User
+  }
+
+  type Mutation {
+    createUser(username: String!, password: String!): User
   }
 `;
 
@@ -33,6 +39,21 @@ const server = new ApolloServer({
         const user = context.db.user.findOne({
           where: {id: parseInt(args.id, 10)},
         });
+
+        return user;
+      },
+    },
+    Mutation: {
+      async createUser(parent, args, context, info) {
+        const passwordDigest = await bcrypt.hash(args.password, 12);
+
+        const user = await db.user.create({
+          data: {
+            username: args.username,
+            password: passwordDigest,
+          },
+        });
+
         return user;
       },
     },
