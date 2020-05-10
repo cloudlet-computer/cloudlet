@@ -1,18 +1,31 @@
 import express from 'express';
 import compression from 'compression';
 import path from 'path';
-import {ApolloServer} from 'apollo-server-express';
+import {ApolloServer, AuthenticationError} from 'apollo-server-express';
+import jwt from 'jsonwebtoken';
 import {db} from './db';
+import {loadDotenv} from './environment/dotenv';
 import {logPlugin, logger} from './apollo';
 import {typeDefs, resolvers} from './graphql';
 import {ApolloContext} from './types';
 
+loadDotenv();
+
 const server = new ApolloServer({
   typeDefs,
-  context({req}) {
-    const context: ApolloContext = {db};
+  context({req}): ApolloContext {
+    const authToken = req.headers.authorization || '';
 
-    return context;
+    let userId = null;
+    jwt.verify(authToken, process.env.JWT_SECRET!, (err, decoded) => {
+      if (err) {
+        return;
+      }
+
+      userId = decoded == null ? null : (decoded as {userId: number}).userId;
+    });
+
+    return {db, userId};
   },
   resolvers,
   logger,

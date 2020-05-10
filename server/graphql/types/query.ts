@@ -3,14 +3,28 @@ import {ApolloContext} from '../../types';
 
 export const typeDefs = gql`
   type Query {
+    me: User
     user(id: ID): User
   }
 `;
 
 export const resolvers: IResolvers<any, ApolloContext> = {
   Query: {
-    user(parent, args, context, info) {
-      const user = context.db.user.findOne({
+    async me(parent, args, context, info) {
+      if (context.userId == null) {
+        return null;
+      }
+
+      const user = await context.db.user.findOne({
+        where: {
+          id: context.userId,
+        },
+      });
+
+      return user;
+    },
+    async user(parent, args, context, info) {
+      const user = await context.db.user.findOne({
         where: {id: parseInt(args.id, 10)},
       });
 

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "setup": "prisma migrate up --experimental",
-    "start:server": "ts-node-dev --respawn --transpileOnly server/index.ts",
+    "start:server": "ts-node-dev --clear --respawn --transpileOnly server/index.ts",
     "start:client": "parcel watch client/index.html"
   },
   "browser": "dist/index.html",
@@ -23,6 +23,7 @@
     "@prisma/cli": "^2.0.0-beta.4",
     "@types/bcrypt": "^3.0.0",
     "@types/compression": "^1.7.0",
+    "@types/jsonwebtoken": "^8.3.9",
     "@types/node": "^13.13.4",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
@@ -39,8 +40,10 @@
     "apollo-server-express": "^2.12.0",
     "bcrypt": "^4.0.1",
     "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.0.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^6.0.0-alpha.4",
