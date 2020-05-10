@@ -1,63 +1,20 @@
 import express from 'express';
 import compression from 'compression';
 import path from 'path';
-import bcrypt from 'bcrypt';
-import {ApolloServer, gql} from 'apollo-server-express';
+import {ApolloServer} from 'apollo-server-express';
 import {db} from './db';
 import {logPlugin, logger} from './apollo';
-
-const typeDefs = gql`
-  type User {
-    id: ID
-    username: String
-    name: String
-    password: String
-    notes: [Note]
-  }
-
-  type Note {
-    id: ID
-    title: String
-    createdAt: String
-  }
-
-  type Query {
-    user(id: ID): User
-  }
-
-  type Mutation {
-    createUser(username: String!, password: String!): User
-  }
-`;
+import {typeDefs, resolvers} from './graphql';
+import {ApolloContext} from './types';
 
 const server = new ApolloServer({
   typeDefs,
-  context: {db},
-  resolvers: {
-    Query: {
-      user(parent, args, context, info) {
-        const user = context.db.user.findOne({
-          where: {id: parseInt(args.id, 10)},
-        });
+  context({req}) {
+    const context: ApolloContext = {db};
 
-        return user;
-      },
-    },
-    Mutation: {
-      async createUser(parent, args, context, info) {
-        const passwordDigest = await bcrypt.hash(args.password, 12);
-
-        const user = await db.user.create({
-          data: {
-            username: args.username,
-            password: passwordDigest,
-          },
-        });
-
-        return user;
-      },
-    },
+    return context;
   },
+  resolvers,
   logger,
   plugins: [logPlugin],
 });
