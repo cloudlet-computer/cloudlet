@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.44",
+    "@apollo/link-error": "^2.0.0-beta.3",
     "@prisma/client": "^2.0.0-beta.4",
     "apollo-server-express": "^2.12.0",
     "bcrypt": "^4.0.1",

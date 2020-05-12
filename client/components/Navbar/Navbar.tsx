@@ -1,8 +1,20 @@
 /** @jsx jsx */
 import {jsx, Box, Text} from 'theme-ui';
 import {Link} from 'react-router-dom';
+import {useQuery, gql} from '@apollo/client';
 
 export function Navbar() {
+  const asdf = useQuery(gql`
+    query NavbarQuery {
+      me {
+        id
+        username
+      }
+    }
+  `);
+
+  console.log({asdf});
+
   return (
     <Box
       paddingX={3}
