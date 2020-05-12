@@ -13,8 +13,7 @@
     "browser": {
       "engines": {
         "browsers": [
-          "> 1%",
-          "not dead"
+          "Chrome 70"
         ]
       }
     }
