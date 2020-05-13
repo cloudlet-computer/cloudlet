@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import {useState} from 'react';
 import {useMutation, gql} from '@apollo/client';
-import {jsx, Box, Container, Heading, Input, Label} from 'theme-ui';
+import {jsx, Box, Container, Heading, Input as OldInput, Label} from 'theme-ui';
 
-import {Button} from '../../ui-kit';
+import {Button, Input} from '../../ui-kit';
 import {useAuth} from '../../context';
 
 export function Login() {
@@ -43,14 +43,14 @@ export function Login() {
             handleSubmit();
           }}
         >
-          <Label>Username</Label>
           <Input
+            label="Username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
 
-          <Label>Password</Label>
           <Input
+            label="Password"
             value={password}
             type="password"
             onChange={(event) => setPassword(event.target.value)}
