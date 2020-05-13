@@ -3,6 +3,8 @@ import {jsx} from '@emotion/core';
 import {useState} from 'react';
 import {useMutation, gql} from '@apollo/client';
 
+import background from 'url:./assets/background.png';
+
 import {Button, Heading, Input} from '../../ui-kit';
 import {useAuth} from '../../context';
 
@@ -27,39 +29,53 @@ export function Login() {
   }
 
   return (
-    <div css={{margin: 'auto', maxWidth: 400}}>
-      <div
-        css={{
-          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          padding: 32,
-          borderRadius: 4,
-        }}
-      >
-        <Heading>Log in</Heading>
-
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            handleSubmit();
+    <div
+      css={{
+        backgroundImage: `url(${background})`,
+        backgroundPosition: 'center center',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundSize: '60%',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div css={{margin: 'auto', maxWidth: 400, width: '100%'}}>
+        <div
+          css={{
+            background: 'white',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+            padding: 32,
+            borderRadius: 4,
           }}
         >
-          <Input
-            label="Username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+          <Heading>Log in</Heading>
 
-          <Input
-            label="Password"
-            value={password}
-            type="password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleSubmit();
+            }}
+          >
+            <Input
+              label="Username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
 
-          <Button fullWidth type="submit">
-            Submit
-          </Button>
-        </form>
+            <Input
+              label="Password"
+              value={password}
+              type="password"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+
+            <Button fullWidth type="submit">
+              Submit
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );
