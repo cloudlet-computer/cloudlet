@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import {useState} from 'react';
 import {useMutation, gql} from '@apollo/client';
-import {jsx, Box, Container, Heading, Input, Label, Button} from 'theme-ui';
+import {jsx, Box, Container, Heading, Input, Label} from 'theme-ui';
 
+import {Button} from '../../ui-kit';
 import {useAuth} from '../../context';
 
 export function Login() {
@@ -55,7 +56,9 @@ export function Login() {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          <Button type="submit">Submit</Button>
+          <Button fullWidth type="submit">
+            Submit
+          </Button>
         </form>
       </Box>
     </Container>
