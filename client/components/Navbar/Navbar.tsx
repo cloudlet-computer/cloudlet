@@ -1,35 +1,41 @@
 /** @jsx jsx */
-import {jsx, Box, Text} from 'theme-ui';
+import {jsx, css} from '@emotion/core';
 import {Link} from 'react-router-dom';
-import {useQuery, gql} from '@apollo/client';
+
+import {color, Button} from '../../ui-kit';
+import {useAuth} from '../../context';
 
 export function Navbar() {
-  const asdf = useQuery(gql`
-    query NavbarQuery {
-      me {
-        id
-        username
-      }
-    }
-  `);
-
-  console.log({asdf});
+  const {logout} = useAuth();
 
   return (
-    <Box
-      paddingX={3}
-      paddingY={2}
-      sx={{
-        borderBottomStyle: 'solid',
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray',
-      }}
+    <nav
+      css={css`
+        align-items: center;
+        border-bottom: 1px solid ${color.gray};
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px;
+      `}
     >
-      <Text sx={{fontSize: 4}}>
-        <Link to="/" sx={{textDecoration: 'none'}}>
-          ☁️
-        </Link>
-      </Text>
-    </Box>
+      <div>
+        <h2>
+          <Link
+            to="/"
+            css={css`
+              text-decoration: none;
+            `}
+          >
+            ☁️
+          </Link>
+        </h2>
+      </div>
+
+      <div>
+        <Button plain onClick={() => logout()}>
+          Sign out
+        </Button>
+      </div>
+    </nav>
   );
 }

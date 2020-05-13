@@ -7,13 +7,34 @@ import {color} from '../color';
 interface Props {
   children: React.ReactNode;
   fullWidth?: boolean;
+  plain?: boolean;
 }
 
 export function Button({
   children,
   fullWidth = false,
+  plain = false,
+  type = 'button',
   ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) {
+  if (plain) {
+    return (
+      <button
+        css={css`
+          background: none;
+          border: none;
+          color: ${color.blue};
+          cursor: pointer;
+          font-size: inherit;
+          line-height: inherit;
+        `}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <button
       css={css`
@@ -23,8 +44,8 @@ export function Button({
         color: white;
         cursor: pointer;
         display: block;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: inherit;
+        line-height: inherit;
         padding: 8px 16px;
         width: ${fullWidth ? '100%' : undefined};
       `}
