@@ -1,9 +1,9 @@
 /** @jsx jsx */
+import {jsx} from '@emotion/core';
 import {useState} from 'react';
 import {useMutation, gql} from '@apollo/client';
-import {jsx, Box, Container, Heading, Input as OldInput, Label} from 'theme-ui';
 
-import {Button, Input} from '../../ui-kit';
+import {Button, Heading, Input} from '../../ui-kit';
 import {useAuth} from '../../context';
 
 export function Login() {
@@ -27,11 +27,11 @@ export function Login() {
   }
 
   return (
-    <Container sx={{maxWidth: 400}}>
-      <Box
-        sx={{
+    <div css={{margin: 'auto', maxWidth: 400}}>
+      <div
+        css={{
           boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-          padding: 4,
+          padding: 32,
           borderRadius: 4,
         }}
       >
@@ -60,7 +60,7 @@ export function Login() {
             Submit
           </Button>
         </form>
-      </Box>
-    </Container>
+      </div>
+    </div>
   );
 }
