@@ -29,7 +29,7 @@ export function Button({
           cursor: pointer;
           font-size: inherit;
           line-height: inherit;
-          padding: 4px;
+          padding: 0;
         `}
         {...props}
       >

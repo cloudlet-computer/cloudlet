@@ -12,6 +12,7 @@ export function Navbar() {
     <nav
       css={css`
         align-items: center;
+        background: white;
         border-bottom: 1px solid ${color.gray};
         display: flex;
         justify-content: space-between;

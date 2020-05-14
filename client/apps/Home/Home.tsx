@@ -1,18 +1,26 @@
 /** @jsx jsx */
-import {jsx, Box, Heading} from 'theme-ui';
-import {Link} from 'react-router-dom';
+import {jsx} from '@emotion/core';
+
+import {Heading} from '../../ui-kit';
+
+import {AppCard} from './components';
 
 export function Home() {
   return (
-    <Box>
-      <Heading>☁️ Home</Heading>
+    <div css={{padding: 20, maxWidth: 1200, margin: 'auto'}}>
+      <Heading size="large">☁️ Home</Heading>
 
-      <Link to="/notes" sx={{display: 'block'}}>
-        ✏️ Notes &rarr;
-      </Link>
-      <Link to="/settings" sx={{display: 'block'}}>
-        ⚙️ Settings &rarr;
-      </Link>
-    </Box>
+      <div
+        css={{
+          display: 'grid',
+          gridGap: 24,
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          marginTop: 32,
+        }}
+      >
+        <AppCard route="/notes" emoji="✏️" appName="Notes" />
+        <AppCard route="/settings" emoji="⚙️" appName="Settings" />
+      </div>
+    </div>
   );
 }
