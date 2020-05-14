@@ -1,3 +1,4 @@
+export {borderRadius} from './border-radius';
 export {color} from './color';
 
 export {Button} from './Button';
