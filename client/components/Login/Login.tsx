@@ -5,7 +5,7 @@ import {useMutation, gql} from '@apollo/client';
 
 import background from 'url:./assets/background.png';
 
-import {Button, Heading, Input} from '../../ui-kit';
+import {Button, Heading, Input, VerticalSpacing} from '../../ui-kit';
 import {useAuth} from '../../context';
 
 export function Login() {
@@ -42,22 +42,15 @@ export function Login() {
       }}
     >
       <div css={{margin: 'auto', maxWidth: 400, width: '100%'}}>
-        <div
-          css={{
-            background: 'white',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-            padding: 32,
-            borderRadius: 4,
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleSubmit();
           }}
         >
-          <Heading>Log in</Heading>
+          <VerticalSpacing>
+            <Heading size="large">Log in</Heading>
 
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              handleSubmit();
-            }}
-          >
             <Input
               label="Username"
               value={username}
@@ -74,8 +67,8 @@ export function Login() {
             <Button fullWidth type="submit">
               Submit
             </Button>
-          </form>
-        </div>
+          </VerticalSpacing>
+        </form>
       </div>
     </div>
   );

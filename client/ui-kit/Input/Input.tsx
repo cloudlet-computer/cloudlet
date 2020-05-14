@@ -2,6 +2,7 @@
 import React, {InputHTMLAttributes} from 'react';
 import {jsx, css} from '@emotion/core';
 
+import {borderRadius} from '../border-radius';
 import {color} from '../color';
 
 interface Props {
@@ -13,11 +14,12 @@ export function Input({
   ...props
 }: Props & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <React.Fragment>
+    <div>
       {label == null ? null : (
         <label
           css={css`
             display: block;
+            margin-bottom: 4px;
           `}
         >
           {label}
@@ -26,9 +28,11 @@ export function Input({
       <input
         css={css`
           appearance: none;
-          background-color: transparent;
+          background-color: white;
           border: 1px solid ${color.text};
-          border-radius: 4px;
+          border-radius: ${borderRadius.base}px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+            inset 0 -1px 2px rgba(0, 0, 0, 0.1);
           display: block;
           font-size: inherit;
           line-height: inherit;
@@ -37,6 +41,6 @@ export function Input({
         `}
         {...props}
       />
-    </React.Fragment>
+    </div>
   );
 }
