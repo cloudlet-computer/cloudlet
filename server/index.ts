@@ -1,7 +1,7 @@
 import express from 'express';
 import compression from 'compression';
 import path from 'path';
-import {ApolloServer, AuthenticationError} from 'apollo-server-express';
+import {ApolloServer} from 'apollo-server-express';
 import jwt from 'jsonwebtoken';
 import {db} from './db';
 import {loadDotenv} from './environment/dotenv';
