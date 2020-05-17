@@ -1,4 +1,5 @@
 import {gql, IResolvers} from 'apollo-server-express';
+import {User} from '@prisma/client';
 import {ApolloContext} from '../../types';
 
 export const typeDefs = gql`

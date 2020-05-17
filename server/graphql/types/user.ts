@@ -7,15 +7,24 @@ export const typeDefs = gql`
     username: String
     name: String
     password: String
-    notes: [Note]
+    notes(first: Int): [Note]
   }
 `;
 
 export const resolvers: IResolvers<any, ApolloContext> = {
   User: {
-    notes(parent, args, context, info) {
-      // TODO
-      return [];
+    notes(parent, args, context) {
+      const {db} = context;
+      const {first = 10} = args;
+
+      const notes = db.note.findMany({
+        where: {
+          userId: parent.id,
+        },
+        first,
+      });
+
+      return notes;
     },
   },
 };
