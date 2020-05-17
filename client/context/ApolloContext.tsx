@@ -36,15 +36,25 @@ function WrappedApolloProvider({children}: {children: React.ReactNode}) {
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
+    defaultOptions: {
+      mutate: {
+        errorPolicy: 'all',
+      },
+      query: {
+        errorPolicy: 'all',
+      },
+      watchQuery: {
+        errorPolicy: 'all',
+      },
+    },
     link: from([
       authLink,
       onError(({graphQLErrors}) => {
-        // TODO: Handle errors
-        //       https://www.apollographql.com/docs/react/v3.0-beta/api/link/apollo-link-error/
-
         if (
           graphQLErrors &&
-          graphQLErrors.some(({message}) => message.includes('not accessible'))
+          graphQLErrors.some(
+            (error) => error.extensions?.code === 'UNAUTHENTICATED',
+          )
         ) {
           logout();
         }
