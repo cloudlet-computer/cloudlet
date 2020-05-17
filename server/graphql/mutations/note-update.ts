@@ -45,5 +45,5 @@ export const resolver: IFieldResolver<any, ApolloContext> = async (
     },
   });
 
-  return updatedNote;
+  return {note: updatedNote};
 };
