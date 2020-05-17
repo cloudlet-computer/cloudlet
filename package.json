@@ -7,7 +7,7 @@
     "setup": "prisma migrate up --experimental",
     "start:server": "ts-node-dev --clear --respawn --transpileOnly server/index.ts",
     "start:client": "parcel watch client/index.html",
-    "lint": "eslint client/"
+    "lint": "eslint client/ server/"
   },
   "browser": "dist/index.html",
   "targets": {

@@ -74,7 +74,7 @@ export const resolvers: IResolvers<any, ApolloContext> = {
       return updatedNote;
     },
 
-    async createUser(parent, args, context, info) {
+    async createUser(parent, args, context) {
       const passwordDigest = await bcrypt.hash(args.password, 12);
 
       const user = await context.db.user.create({
@@ -87,7 +87,7 @@ export const resolvers: IResolvers<any, ApolloContext> = {
       return user;
     },
 
-    async signIn(parent, args, context, info) {
+    async signIn(parent, args, context) {
       const {username, password} = args;
 
       const user = await context.db.user.findOne({

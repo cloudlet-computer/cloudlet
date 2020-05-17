@@ -1,4 +1,3 @@
-import {Config} from 'apollo-server-express';
 import {bgBlueBright, bgGray, bgYellow, bgRedBright} from 'chalk';
 import {Logger, PluginDefinition} from './types';
 
