@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, {InputHTMLAttributes} from 'react';
+import {InputHTMLAttributes} from 'react';
 import {jsx, css} from '@emotion/core';
 
 import {borderRadius} from '../border-radius';

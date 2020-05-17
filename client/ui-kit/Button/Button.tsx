@@ -31,6 +31,7 @@ export function Button({
           line-height: inherit;
           padding: 0;
         `}
+        type={type}
         {...props}
       >
         {children}
@@ -53,6 +54,7 @@ export function Button({
         padding: 8px 16px;
         width: ${fullWidth ? '100%' : undefined};
       `}
+      type={type}
       {...props}
     >
       {children}
