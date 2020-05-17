@@ -9,6 +9,14 @@ interface Props {
   onNoteSelect(note: Note): void;
 }
 
+const formatDate = Intl.DateTimeFormat('en', {
+  month: 'long',
+  year: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+}).format;
+
 export function Sidebar({notes, onNoteSelect}: Props) {
   return (
     <div
@@ -17,7 +25,7 @@ export function Sidebar({notes, onNoteSelect}: Props) {
       `}
     >
       {notes.map((note) => {
-        const {id, title} = note;
+        const {id, title, updatedAt} = note;
 
         return (
           <button
@@ -38,7 +46,16 @@ export function Sidebar({notes, onNoteSelect}: Props) {
               }
             `}
           >
-            {title === '' ? <em>No title</em> : <p>{title}</p>}
+            <p>{title === '' ? <em>No title</em> : title}</p>
+            <p
+              css={css`
+                font-size: 12px;
+                font-style: italic;
+                margin-top: 8px;
+              `}
+            >
+              {formatDate(new Date(parseInt(updatedAt, 10)))}
+            </p>
           </button>
         );
       })}
