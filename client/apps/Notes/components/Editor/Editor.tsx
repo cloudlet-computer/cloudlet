@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {useCallback, useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {jsx, css} from '@emotion/core';
 import {useMutation} from '@apollo/client';
 
