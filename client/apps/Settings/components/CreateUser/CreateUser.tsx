@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Box, Heading, Label, Input, Button} from 'theme-ui';
 import {useMutation, gql} from '@apollo/client';
+
+import {Button, Heading, Input, VerticalSpacing} from '../../../../ui-kit';
 
 export function CreateUser() {
   const [username, setUsername] = useState('');
@@ -29,23 +30,27 @@ export function CreateUser() {
   }
 
   return (
-    <Box as="form" onSubmit={handleSubmit}>
-      <Heading>Create user</Heading>
+    <form onSubmit={handleSubmit}>
+      <VerticalSpacing>
+        <Heading>Create user</Heading>
 
-      <Label>Username</Label>
-      <Input
-        onChange={(event) => setUsername(event.target.value)}
-        value={username}
-      />
+        <Input
+          label="Username"
+          onChange={(event) => setUsername(event.target.value)}
+          value={username}
+        />
 
-      <Label>Password</Label>
-      <Input
-        onChange={(event) => setPassword(event.target.value)}
-        value={password}
-        type="password"
-      />
+        <Input
+          label="Password"
+          onChange={(event) => setPassword(event.target.value)}
+          value={password}
+          type="password"
+        />
 
-      <Button>Save</Button>
-    </Box>
+        <div>
+          <Button>Save</Button>
+        </div>
+      </VerticalSpacing>
+    </form>
   );
 }
