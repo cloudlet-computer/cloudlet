@@ -2,7 +2,7 @@
 import {jsx, css} from '@emotion/core';
 import {Link} from 'react-router-dom';
 
-import {color, Button} from '../../ui-kit';
+import {color, Button, NAVBAR_HEIGHT} from '../../ui-kit';
 import {useAuth} from '../../context';
 
 export function Navbar() {
@@ -15,8 +15,9 @@ export function Navbar() {
         background: white;
         border-bottom: 1px solid ${color.gray};
         display: flex;
+        height: ${NAVBAR_HEIGHT};
         justify-content: space-between;
-        padding: 8px 16px;
+        padding: 0 16px;
       `}
     >
       <div>
