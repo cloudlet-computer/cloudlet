@@ -13,15 +13,17 @@ export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [signInMutation] = useMutation(gql`
-    mutation SignInMutation($username: String!, $password: String!) {
-      signIn(username: $username, password: $password) {
+    mutation SignInMutation($input: SignInInput!) {
+      signIn(input: $input) {
         token
       }
     }
   `);
 
   async function handleSubmit() {
-    const {data} = await signInMutation({variables: {username, password}});
+    const {data} = await signInMutation({
+      variables: {input: {username, password}},
+    });
 
     if (data.signIn != null) {
       login(data.signIn.token);
