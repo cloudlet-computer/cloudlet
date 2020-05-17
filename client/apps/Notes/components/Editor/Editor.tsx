@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {jsx, css} from '@emotion/core';
 import {useMutation} from '@apollo/client';
 
@@ -8,12 +8,20 @@ import {Note} from '../../types';
 import {NotesQuery} from '../../graphql/NotesQuery';
 import {NoteUpdateMutation} from '../../graphql/NoteUpdateMutation';
 
+import {BodyEditor} from './components';
+
 interface Props {
   activeNote: Note;
 }
 
 export function Editor({activeNote}: Props) {
   const [title, setTitle] = useStateFromProp(activeNote.title);
+  const [bodyValue, setBodyValue] = useState([
+    {
+      type: 'paragraph',
+      children: [{text: ''}],
+    },
+  ]);
   const [noteUpdateMutation] = useMutation(NoteUpdateMutation);
 
   useEffect(() => {
@@ -56,7 +64,7 @@ export function Editor({activeNote}: Props) {
           }}
         />
       </div>
-      <p>Editor for note ID {activeNote.id}</p>
+      <BodyEditor value={bodyValue} onValueChange={setBodyValue} />
     </section>
   );
 }

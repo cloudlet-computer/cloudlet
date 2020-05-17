@@ -53,6 +53,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^6.0.0-alpha.4",
-    "react-router-dom": "^6.0.0-alpha.4"
+    "react-router-dom": "^6.0.0-alpha.4",
+    "slate": "^0.58.1",
+    "slate-react": "^0.58.1"
   }
 }
