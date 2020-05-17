@@ -3,9 +3,10 @@ import {ApolloContext} from '../../types';
 
 export const typeDefs = gql`
   type Note {
-    id: ID
+    id: ID!
     title: String
-    createdAt: String
+    createdAt: String!
+    updatedAt: String!
   }
 `;
 

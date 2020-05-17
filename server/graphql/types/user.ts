@@ -22,6 +22,9 @@ export const resolvers: IResolvers<any, ApolloContext> = {
           userId: parent.id,
         },
         first,
+        orderBy: {
+          updatedAt: 'desc',
+        },
       });
 
       return notes;
