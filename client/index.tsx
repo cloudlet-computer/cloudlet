@@ -2,7 +2,6 @@ import './global.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {ThemeProvider, Box} from 'theme-ui';
 
 import {THEME} from './theme';
 import {Login, Navbar} from './components';
@@ -20,7 +19,7 @@ function App() {
   }
 
   return (
-    <Box>
+    <div>
       <Navbar />
       <React.Suspense fallback={<p>Loading...</p>}>
         <Routes>
@@ -29,18 +28,16 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </React.Suspense>
-    </Box>
+    </div>
   );
 }
 
 ReactDOM.render(
   <AuthProvider>
     <ApolloProvider>
-      <ThemeProvider theme={THEME}>
-        <Router>
-          <App />
-        </Router>
-      </ThemeProvider>
+      <Router>
+        <App />
+      </Router>
     </ApolloProvider>
   </AuthProvider>,
   document.getElementById('main'),

@@ -1,14 +1,20 @@
-import React from 'react';
-import {Heading, Container} from 'theme-ui';
+/** @jsx jsx */
+import {jsx, css} from '@emotion/core';
+
+import {Heading} from '../../ui-kit';
 
 import {CreateUser} from './components';
 
 export function Settings() {
   return (
-    <Container p={4}>
-      <Heading>Settings</Heading>
+    <div
+      css={css`
+        padding: 20px;
+      `}
+    >
+      <Heading size="large">Settings</Heading>
       <hr />
       <CreateUser />
-    </Container>
+    </div>
   );
 }
