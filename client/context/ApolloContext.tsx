@@ -14,7 +14,7 @@ import {useAuth} from './AuthContext';
 const authLink = new ApolloLink((operation, forward) => {
   operation.setContext((context: any) => {
     const {headers} = context;
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('Authorization');
 
     return {
       headers: {
