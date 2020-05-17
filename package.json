@@ -4,7 +4,7 @@
   "author": "Andy Mockler <asmockler@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "setup": "prisma migrate up --experimental",
+    "setup": "prisma migrate up --experimental && prisma generate",
     "start:server": "ts-node-dev --clear --respawn --transpileOnly server/index.ts",
     "start:client": "parcel watch client/index.html",
     "lint": "eslint client/ server/",
