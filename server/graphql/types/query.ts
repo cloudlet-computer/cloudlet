@@ -1,5 +1,4 @@
 import {gql, IResolvers} from 'apollo-server-express';
-import {User} from '@prisma/client';
 import {ApolloContext} from '../../types';
 
 export const typeDefs = gql`
@@ -11,7 +10,7 @@ export const typeDefs = gql`
 
 export const resolvers: IResolvers<any, ApolloContext> = {
   Query: {
-    async me(parent, args, context, info) {
+    async me(parent, args, context) {
       if (context.userId == null) {
         return null;
       }
@@ -24,7 +23,7 @@ export const resolvers: IResolvers<any, ApolloContext> = {
 
       return user;
     },
-    async user(parent, args, context, info) {
+    async user(parent, args, context) {
       const user = await context.db.user.findOne({
         where: {id: parseInt(args.id, 10)},
       });
