@@ -1,4 +1,4 @@
-import {IFieldResolver, gql} from 'apollo-server-express';
+import {IFieldResolver, gql, AuthenticationError} from 'apollo-server-express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {ApolloContext} from '../../types';
@@ -35,13 +35,13 @@ export const resolver: IFieldResolver<any, ApolloContext> = async (
   });
 
   if (user == null) {
-    return null;
+    throw new AuthenticationError('Could not sign in');
   }
 
   const passwordMatches = await bcrypt.compare(password, user.password);
 
   if (!passwordMatches) {
-    return null;
+    throw new AuthenticationError('Could not sign in');
   }
 
   const token = jwt.sign({userId: user.id}, process.env.JWT_SECRET!);
