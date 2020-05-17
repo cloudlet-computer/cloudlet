@@ -8,10 +8,12 @@ export function CreateUser() {
   const [password, setPassword] = useState('');
 
   const [createUser] = useMutation(gql`
-    mutation CreateUser($username: String!, $password: String!) {
-      createUser(username: $username, password: $password) {
-        id
-        username
+    mutation UserCreate($input: UserCreateInput!) {
+      userCreate(input: $input) {
+        user {
+          id
+          username
+        }
       }
     }
   `);
@@ -21,8 +23,10 @@ export function CreateUser() {
 
     const result = await createUser({
       variables: {
-        username,
-        password,
+        input: {
+          username,
+          password,
+        },
       },
     });
 
