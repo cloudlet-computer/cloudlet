@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {jsx, css} from '@emotion/core';
 import {useMutation} from '@apollo/client';
 
+import {VerticalSpacing} from '../../../../ui-kit';
 import {useStateFromProp} from '../../../../hooks';
 import {Note} from '../../types';
 import {NotesQuery} from '../../graphql/NotesQuery';
@@ -51,20 +52,22 @@ export function Editor({activeNote}: Props) {
         padding: 20px;
       `}
     >
-      <div>
-        <input
-          css={css`
-            border: 0;
-            font-size: 36px;
-          `}
-          placeholder="No title"
-          value={title}
-          onChange={(event) => {
-            setTitle(event.target.value);
-          }}
-        />
-      </div>
-      <BodyEditor value={bodyValue} onValueChange={setBodyValue} />
+      <VerticalSpacing>
+        <div>
+          <input
+            css={css`
+              border: 0;
+              font-size: 36px;
+            `}
+            placeholder="No title"
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+          />
+        </div>
+        <BodyEditor value={bodyValue} onValueChange={setBodyValue} />
+      </VerticalSpacing>
     </section>
   );
 }
