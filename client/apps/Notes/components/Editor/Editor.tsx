@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {jsx, css} from '@emotion/core';
 import {useMutation} from '@apollo/client';
 
-import {VerticalSpacing} from '../../../../ui-kit';
+import {VerticalSpacing, borderRadius} from '../../../../ui-kit';
 import {useStateFromProp} from '../../../../hooks';
 import {Note} from '../../types';
 import {NotesQuery} from '../../graphql/NotesQuery';
@@ -62,7 +62,15 @@ export function Editor({activeNote}: Props) {
           <input
             css={css`
               border: 0;
+              border-radius: ${borderRadius.base}px;
               font-size: 36px;
+              outline: none;
+              padding: 8px;
+              width: 100%;
+
+              &:focus {
+                background: #efefef;
+              }
             `}
             placeholder="No title"
             value={title}
