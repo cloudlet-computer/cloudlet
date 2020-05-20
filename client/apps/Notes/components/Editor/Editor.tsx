@@ -31,7 +31,7 @@ export function Editor({activeNote}: Props) {
     }
 
     async function mutate() {
-      const response = await noteUpdateMutation({
+      await noteUpdateMutation({
         variables: {
           input: {
             id: activeNote.id,
@@ -40,10 +40,15 @@ export function Editor({activeNote}: Props) {
         },
         refetchQueries: [{query: NotesQuery}],
       });
-
-      console.log({response});
     }
-    mutate();
+
+    const handler = setTimeout(() => {
+      mutate();
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
   }, [title]);
 
   return (
