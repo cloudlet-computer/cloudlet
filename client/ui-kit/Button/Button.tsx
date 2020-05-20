@@ -9,6 +9,7 @@ interface Props {
   children: React.ReactNode;
   fullWidth?: boolean;
   plain?: boolean;
+  size?: 'small' | 'medium';
 }
 
 export function Button({
@@ -16,6 +17,7 @@ export function Button({
   fullWidth = false,
   plain = false,
   type = 'button',
+  size = 'medium',
   ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) {
   if (plain) {
@@ -39,6 +41,15 @@ export function Button({
     );
   }
 
+  let padding = '0px';
+  let fontSize = 'inherit';
+  if (size === 'small') {
+    padding = '4px 8px';
+    fontSize = '14px';
+  } else if (size === 'medium') {
+    padding = '8px 16px';
+  }
+
   return (
     <button
       css={css`
@@ -49,9 +60,9 @@ export function Button({
         color: white;
         cursor: pointer;
         display: block;
-        font-size: inherit;
+        font-size: ${fontSize};
         line-height: inherit;
-        padding: 8px 16px;
+        padding: ${padding};
         width: ${fullWidth ? '100%' : undefined};
       `}
       type={type}

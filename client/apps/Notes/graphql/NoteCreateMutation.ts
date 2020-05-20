@@ -5,6 +5,7 @@ export const NoteCreateMutation = gql`
     noteCreate {
       note {
         id
+        title
       }
     }
   }
