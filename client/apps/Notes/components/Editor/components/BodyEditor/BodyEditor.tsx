@@ -5,7 +5,7 @@ import {createEditor, Editor, Transforms} from 'slate';
 import {Slate, Editable, withReact} from 'slate-react';
 
 import {extendSlate} from './extend-slate';
-import {Text, TextType} from './types';
+import {Text} from './types';
 import {Leaf} from './components';
 
 interface Props {
