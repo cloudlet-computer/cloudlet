@@ -26,7 +26,6 @@ export function Sidebar({notes, onNoteSelect}: Props) {
   async function handleCreateButtonClick() {
     const {data} = await noteCreate({
       refetchQueries: [{query: NotesQuery}],
-      awaitRefetchQueries: true,
     });
 
     onNoteSelect(data.noteCreate.note);

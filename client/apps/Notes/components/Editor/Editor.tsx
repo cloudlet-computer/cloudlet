@@ -6,7 +6,6 @@ import {useMutation} from '@apollo/client';
 import {VerticalSpacing, borderRadius} from '../../../../ui-kit';
 import {useStateFromProp} from '../../../../hooks';
 import {Note} from '../../types';
-import {NotesQuery} from '../../graphql/NotesQuery';
 import {NoteUpdateMutation} from '../../graphql/NoteUpdateMutation';
 
 import {BodyEditor} from './components';
@@ -38,7 +37,6 @@ export function Editor({activeNote}: Props) {
             title,
           },
         },
-        refetchQueries: [{query: NotesQuery}],
       });
     }
 

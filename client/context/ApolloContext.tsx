@@ -7,7 +7,7 @@ import {
   ApolloLink,
   from,
 } from '@apollo/client';
-import {onError} from '@apollo/link-error';
+import {onError} from '@apollo/client/link/error';
 
 import {useAuth} from './AuthContext';
 
@@ -40,7 +40,7 @@ function WrappedApolloProvider({children}: {children: React.ReactNode}) {
       authLink,
       onError(({graphQLErrors}) => {
         // TODO: Handle errors
-        //       https://www.apollographql.com/docs/react/v3.0-beta/api/link/apollo-link-error/
+        //       https://www.apollographql.com/docs/react/api/link/apollo-link-error/
 
         if (
           graphQLErrors &&
