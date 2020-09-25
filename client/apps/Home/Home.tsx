@@ -20,6 +20,7 @@ export function Home() {
       >
         <AppCard route="/notes" emoji="✏️" appName="Notes" />
         <AppCard route="/settings" emoji="⚙️" appName="Settings" />
+        <AppCard route="/tasks" emoji="✅" appName="Tasks" />
       </div>
     </div>
   );

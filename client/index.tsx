@@ -9,6 +9,7 @@ import {ApolloProvider, AuthProvider, useAuth} from './context';
 const Home = React.lazy(() => import('./apps/Home'));
 const Notes = React.lazy(() => import('./apps/Notes'));
 const Settings = React.lazy(() => import('./apps/Settings'));
+const Tasks = React.lazy(() => import('./apps/Tasks'));
 
 function App() {
   const {loggedIn} = useAuth();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/notes" element={<Notes />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/tasks" element={<Tasks />} />
         </Routes>
       </React.Suspense>
     </div>
